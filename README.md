@@ -1,1 +1,1 @@
-js_cookbook
+A cookbook made with JSON and Ajax.
