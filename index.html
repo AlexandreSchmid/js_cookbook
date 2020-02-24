@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajax Cookbook</title>
-    <link rel="stylesheet" href="./css/">
+    <link rel="stylesheet" href="./css/css.css">
 </head>
 
 <body>
-    <div class="search"><input type="search" id="searchBar"></div>
+    <div class="search"><input type="search" class="searchBar" id="sB">
+        <input type="submit" class="submitSearch" value="OK"></div>
     <div class="container">
         <div class="picture">
-
+            <img src="" id="img">
         </div>
         <section>
-            <h2 class="recipeTitle"></h2>
+            <h1 class="recipeTitle"></h1>
+            <ul class="ingredients"></ul>
             <p class="instructions"></p>
         </section>
     </div>
@@ -23,7 +25,7 @@
     <nav class="navbar">
     </nav>
 </footer>
-<script src="./asset/"></script>
-<script src="./js/"></script>
+<script src="./asset/app.js"></script>
+<script src="./js/cookBook.js"></script>
 
 </html>
