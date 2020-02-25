@@ -24,28 +24,73 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.picture {
+    text-align: center;
+    width: 40%;
+    vertical-align: middle;
+}
+
 #img {
     border-radius: 50%;
-    border: 2px solid lightgreen;
-    width: 300px;
-    height: 300px;
+    border: 2px solid lightseagreen;
+    width: 350px;
+    height: 350px;
+    margin-top: 4em;
 }
 
 .container {
     display: inline-flex;
-    margin: 2em;
+    margin: 1em;
     padding: 0;
 }
 
 section {
-    width: 49%;
+    width: 59%;
     float: right;
     vertical-align: middle;
     text-align: left;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.picture {
+section h1 {
+    font-size: large;
+}
+
+section small {
     text-align: center;
-    width: 50%;
-    vertical-align: middle;
+    color: darkcyan;
+}
+
+section .ingredients {
+    list-style-type: square;
+    font-size: medium;
+}
+
+section .note {
+    font-style: italic;
+    color: darkslategrey;
+}
+
+.navbar {
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    right: 0;
+    background-color: burlywood;
+    text-align: center;
+    overflow: hidden;
+}
+
+.navbar li {
+    display: inline-block;
+    padding: 40px 40px;
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+    color: cornflowerblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

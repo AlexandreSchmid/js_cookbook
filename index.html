@@ -8,21 +8,33 @@
 </head>
 
 <body>
-    <div class="search"><input type="search" class="searchBar" id="sB">
-        <input type="submit" class="submitSearch" value="OK"></div>
+    <div class="search">
+        <form method="GET">
+            <input type="search" class="searchBar" list="recipeList" id="sB">
+            <datalist id="recipeList">
+            </datalist>
+            <input type="submit" class="submitSearch" value="OK">
+        </form>
+    </div>
     <div class="container">
         <div class="picture">
             <img src="" id="img">
         </div>
         <section>
             <h1 class="recipeTitle"></h1>
+            <small id="small"></small>
             <ul class="ingredients"></ul>
             <p class="instructions"></p>
+            <p class="note"></p>
         </section>
     </div>
 </body>
 <footer>
     <nav class="navbar">
+        <li class="allRecipes"><a href="#">All recipes</a></li>
+        <li class="byNutrition"><a href="#">Recipe by nutrition</a></li>
+        <li class="byIngredient"><a href="#">Recipe by ingredient</a></li>
+        <li class="byTag"><a href="#">Recipe by tag</a></li>
     </nav>
 </footer>
 <script src="./asset/app.js"></script>
