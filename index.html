@@ -16,11 +16,6 @@
             <input type="submit" class="submitSearch" value="OK">
         </form>
     </div>
-    <div class="hamburgerContainer">
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-        <div class="hamburger"></div>
-    </div>
     <div class="container">
         <div class="picture">
             <img src="" id="img">
@@ -34,16 +29,26 @@
         </section>
     </div>
 </body>
+
 <footer>
     <nav class="navbar">
-        <li class="allRecipes"><a href="#">All recipes</a></li>
-        <li class="byNutrition"><a href="#">Recipe by nutrition</a></li>
-        <li class="byIngredient"><a href="#">Recipe by ingredient</a></li>
-        <li class="byTag"><a href="#">Recipe by tag</a></li>
+        <li class="allRecipes" name="bottomMenu"><a href="#all">All recipes</a></li>
+        <li class="byNutrition" name="bottomMenu"><a href="#byNutri">Recipe by nutrition</a></li>
+        <li class="byIngredient" name="bottomMenu"><a href="#byIngredient">Recipe by ingredient</a></li>
+        <li class="byTag" name="bottomMenu"><a href="#byTag">Recipe by tag</a></li>
     </nav>
 </footer>
+
+<div id="modalBox" class="modal">
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="content"></div>
+    </div>
+
+</div>
+
 <script src="./asset/app.js"></script>
-<script src="./asset/navbar.js"></script>
 <script src="./js/cookBook.js"></script>
 
 </html>
