@@ -24,6 +24,9 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+/** Picture div and image border**/
+
 .picture {
     text-align: center;
     width: 40%;
@@ -37,6 +40,9 @@
     height: 350px;
     margin-top: 4em;
 }
+
+
+/** Container parts **/
 
 .container {
     display: inline-flex;
@@ -56,36 +62,35 @@ section h1 {
     font-size: large;
 }
 
-section small {
-    text-align: center;
-    color: darkcyan;
-}
-
 section .ingredients {
     list-style-type: square;
     font-size: medium;
 }
 
-section .note {
+section .note,
+#small {
     font-style: italic;
     color: darkslategrey;
 }
 
+
+/** Bottom section **/
+
 .navbar {
+    position: fixed;
     width: auto;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    left: 0;
-    right: 0;
-    background-color: burlywood;
+    background-color: darkgrey;
     text-align: center;
-    overflow: hidden;
+    margin-top: auto;
+    padding: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
 }
 
 .navbar li {
-    display: inline-block;
     padding: 40px 40px;
+    list-style-type: none;
 }
 
 a {
@@ -93,4 +98,15 @@ a {
     font-size: large;
     color: cornflowerblue;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.hamburgerContainer {
+    margin-left: 1000px;
+}
+
+.hamburgerContainer .hamburger {
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    margin-top: 4px;
 }
