@@ -13,19 +13,19 @@
             <input type="search" class="searchBar" list="recipeList" id="sB">
             <datalist id="recipeList">
             </datalist>
-            <input type="submit" class="submitSearch" value="OK">
+            <input type="submit" class="submitSearch" hidden="true">
         </form>
     </div>
     <div class="container">
         <div class="picture">
+            <h1 class="recipeTitle"></h1>
             <img src="" id="img">
+            <p class="note"></p>
         </div>
         <section>
-            <h1 class="recipeTitle"></h1>
             <span id="small"></span>
             <ul class="ingredients"></ul>
             <p class="instructions"></p>
-            <p class="note"></p>
         </section>
     </div>
 </body>
@@ -40,12 +40,10 @@
 </footer>
 
 <div id="modalBox" class="modal">
-
     <div class="modal-content">
         <span class="close">&times;</span>
         <div class="content"></div>
     </div>
-
 </div>
 
 <script src="./asset/app.js"></script>
