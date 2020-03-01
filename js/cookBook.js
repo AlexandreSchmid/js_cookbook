@@ -1,3 +1,19 @@
+function listRecipe(item) {
+    let listRecipe = []
+    item.recipe.forEach(el => {
+        listRecipe.push(el.name)
+    })
+    return listRecipe
+}
+
+function autocomplete(item) {
+    let opt = document.createElement('option')
+    listRecipe(item).forEach(el => {
+        opt.value = el
+        document.getElementById("recipeList").appendChild(opt)
+    })
+}
+
 function createView(item) {
     document.querySelector(".recipeTitle").innerHTML = item.name
     document.getElementById("small").innerHTML = item.description
@@ -45,26 +61,25 @@ function createView(item) {
     document.getElementById('img').setAttribute('src', item.image)
 }
 
-function openModal(itemArray, typeInput) {}
+function openModal(itemArray, typeInput) {
+    itemArray.forEach(el => {
+        let input = document.createElement('input')
+        input.type = typeInput
+        input.setAttribute('name', 'recipe')
+        let label = document.createElement('label')
+        label.setAttribute('for', 'recipe')
+        label.innerHTML = el
+        document.querySelector('.modal-content .content').append(label)
+        document.querySelector('.modal-content .content').append(input)
+        document.querySelector('.modal-content .content').append(document.createElement('br'))
+    })
+}
 
 getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.json', function(response) {
     // Getting JSON data and parsing, create arrays
     const res = JSON.parse(response)
-    const listRecipe = []
-    document.querySelector('#sB').addEventListener("input", function(e) {
-        res.recipe.forEach(el => {
-            listRecipe.push(el.name)
-        })
-        let opt = document.createElement('option')
-        listRecipe.forEach(el => {
-            if (el.includes(e.target.value) === true) {
-                opt.value = el
-                document.getElementById("recipeList").appendChild(opt)
-            } else {
-                document.getElementById("recipeList").removeChild(opt)
-            }
-        })
-    })
+    autocomplete(res)
+
     document.querySelector('form').addEventListener('submit', function(e) {
         e.preventDefault()
         if (document.querySelector('#sB').value) {
@@ -78,19 +93,17 @@ getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.js
         }
     })
 
-    for (var i = 0; i < document.getElementsByName("bottomMenu").length; i++) {
+    for (let i = 0; i < document.getElementsByName("bottomMenu").length; i++) {
         document.getElementsByName("bottomMenu")[i].addEventListener("click", function(e) {
             let tag = e.target.href
-            switch (tag) {
-                case "#all":
-                    openModal(listRecipe, "checkbox")
-                case "#byNutri":
-                    break
-                case "#byIngredient":
-                    openModal(listIngredient, "checkbox")
-                case "#byTag":
-                    openModal(listTag, "")
-            }
+            document.querySelector('.modal').style.display = "block"
+            document.querySelector('.modal-content').style.display = "block"
+
+            if (tag.includes("#all")) {
+                openModal(listRecipe(res), "radio")
+            } else if (tag.includes("#byNutri")) {} else if (tag.includes("#byIngredient")) {
+                openModal(listIngredient, "checkbox")
+            } else if (tag.includes("#byTag")) { openModal(listTag, "") }
         })
     }
 })
