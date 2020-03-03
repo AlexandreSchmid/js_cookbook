@@ -10,7 +10,7 @@
 <body>
     <div class="search">
         <form method="GET">
-            <input type="search" class="searchBar" list="recipeList" id="sB">
+            <input type="search" class="searchBar" list="recipeList" id="sB" autocomplete="on">
             <datalist id="recipeList">
             </datalist>
             <input type="submit" class="submitSearch" hidden="true">
@@ -44,9 +44,13 @@
         <span class="close">&times;</span>
         <div class="content"></div>
     </div>
+    <div class="picture">
+        <img src="" id="imgModal">
+    </div>
 </div>
 
 <script src="./asset/app.js"></script>
+<script src="./asset/modal.js"></script>
 <script src="./js/cookBook.js"></script>
 
 </html>
