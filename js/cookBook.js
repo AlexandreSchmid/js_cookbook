@@ -30,11 +30,13 @@ function createView(res) {
             return sentence
         }
         // Ingredients / ingredient group for preparations included into the recipe
-    res.ingredient.forEach(el => {
-        let li = document.createElement('li')
-        li.innerHTML = unitAmount(el.amount, el.unit, el.preparation) + el.name
-        document.querySelector('section .ingredients').appendChild(li)
-    })
+    if (res.ingredient) {
+        res.ingredient.forEach(el => {
+            let li = document.createElement('li')
+            li.innerHTML = unitAmount(el.amount, el.unit, el.preparation) + el.name
+            document.querySelector('section .ingredients').appendChild(li)
+        })
+    }
     if (res.ingredientGroup) {
         res.ingredientGroup.forEach(el => {
             let li = document.createElement('li')
@@ -58,7 +60,7 @@ function createView(res) {
     if (res.tag) {
         document.querySelector('.note').innerHTML = ''
         res.tag.forEach(el => {
-            let a = document.createElement('a')
+            let a = document.createElement('p')
             let aText = document.createTextNode(el + ' ')
             a.href = el
             a.appendChild(aText)
@@ -91,20 +93,24 @@ function bottonMenu(res) {
         document.getElementsByName('bottomMenu')[i].addEventListener('click', function(e) {
             let tag = e.target.href
             if (tag.includes('#all')) {
-                openModal(listRecipe(res), 'radio', 'all')
+                openModal(listRecipe(res), 'all', res)
                 openRecipes(res)
             } else if (tag.includes('#byNutri')) {
 
             } else if (tag.includes('#byIngredient')) {
-                openModal(listIngredient, 'checkbox')
+                //openModal(listIngredient, 'checkbox')
             } else if (tag.includes('#byTag')) {
-                let listTag = []
+                let listTag = {}
                 res.recipe.forEach(el => {
                     el.tag.forEach(el2 => {
-                        if (el2) { listTag.push(el2) }
+                        if (el2) {
+                            listTag[el2.replace(' ', '_')] += ',' + el.name
+                        }
                     })
+                    listRecipeTag = ''
                 })
-                openModal(listTag, 'checkbox', 'byTag')
+                openModal(listTag, 'byTag', res)
+                openRecipes(res)
             }
         })
     }

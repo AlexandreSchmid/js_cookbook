@@ -145,7 +145,33 @@ hr {
     border-radius: 15px;
     width: 65%;
     /* Could be more or less, depending on screen size */
-    display: inline;
+    display: inline-block;
+}
+
+.modal-content .content {
+    display: inline-flex;
+}
+
+.modal-content .content button {
+    display: block;
+    border: none;
+    background-color: lightskyblue;
+    color: white;
+    width: 15em;
+    height: 2em;
+    transition: 0.3s;
+}
+
+.modal-content .content button:hover {
+    background-color: lightseagreen;
+}
+
+.tabContent {
+    display: none;
+}
+
+.tabRecipes {
+    margin: 1em;
 }
 
 
