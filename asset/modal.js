@@ -75,8 +75,9 @@ function byTag(itemArray) {
             let p = document.createElement('p')
             let a = document.createElement('a')
             if (el != 'undefined') {
-                a.href = `#${el}`
-                a.id = i
+                a.href = '#'
+                a.name = "recipeList"
+                a.id = el
                 a.innerHTML = el
                 p.append(a)
             }
@@ -84,10 +85,10 @@ function byTag(itemArray) {
         })
         divRecipes.append(itemRecipe)
     }
-
 }
 
-function openRecipes(res) {
+
+function recipeAll(res) {
     document.querySelector('button').addEventListener('click', function() {
         let recipeCheck = document.getElementsByName('recipe')
         for (let i = 0; i < res.recipe.length; i++) {
@@ -97,15 +98,17 @@ function openRecipes(res) {
         }
         document.querySelector('.close').click()
     })
+}
 
-    document.querySelector('.modal-content .content .tabRecipes .tabContent a').addEventListener('click', function(e) {
-        console.log(e.target.innerHTML)
-        e.preventDefault()
+function recipeByTag(res) {
+    document.getElementsByName('recipeList').addEventListener('click', function(event) {
+        console.log(event.target.id)
         for (let i = 0; i < res.recipe.length; i++) {
-            if (e.target.innerHTML === res.recipe[i]) {
+            if (event.target.id === res.recipe[i]) {
                 createView(res.recipe[i])
             }
         }
+        document.querySelector('.close').click()
     })
 }
 

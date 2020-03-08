@@ -94,7 +94,7 @@ function bottonMenu(res) {
             let tag = e.target.href
             if (tag.includes('#all')) {
                 openModal(listRecipe(res), 'all', res)
-                openRecipes(res)
+                recipeAll(res)
             } else if (tag.includes('#byNutri')) {
 
             } else if (tag.includes('#byIngredient')) {
@@ -107,10 +107,9 @@ function bottonMenu(res) {
                             listTag[el2.replace(' ', '_')] += ',' + el.name
                         }
                     })
-                    listRecipeTag = ''
                 })
                 openModal(listTag, 'byTag', res)
-                openRecipes(res)
+                recipeByTag(res)
             }
         })
     }
