@@ -100,11 +100,11 @@ function recipeAll(res) {
     })
 }
 
-function recipeByTag(res) {
-    document.getElementsByName('recipeList').addEventListener('click', function(event) {
-        console.log(event.target.id)
-        for (let i = 0; i < res.recipe.length; i++) {
-            if (event.target.id === res.recipe[i]) {
+function recipeByTag() {
+    document.querySelector('.modal-content .content .tabRecipes .tabContent p a').addEventListener('click', function(e, res) {
+        let recipeList = document.getElementsByName('recipeList')
+        for (let i = 0; i < recipeList.length; i++) {
+            if (recipeList.item.id === res.recipe[i]) {
                 createView(res.recipe[i])
             }
         }
