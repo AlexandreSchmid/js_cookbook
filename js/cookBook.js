@@ -96,7 +96,19 @@ function bottonMenu(res) {
                 openModal(listRecipe(res), 'all', res)
                 recipeAll(res)
             } else if (tag.includes('#byIngredient')) {
-                //openModal(listIngredient, 'checkbox')
+                let listIngredients = {}
+                res.recipe.forEach(el => {
+                    if (el.ingredient) {
+                        el.ingredient.forEach(el2 => {
+                            listIngredients[el2.name] += el.name + ', '
+                        })
+                    }
+                    if (el.ingredientGroup) {
+                        el.ingredientGroup.forEach(el3 => {
+                            listIngredients[el3.name] += el.name + ', '
+                        })
+                    }
+                })
             } else if (tag.includes('#byTag')) {
                 let listTag = {}
                 res.recipe.forEach(el => {

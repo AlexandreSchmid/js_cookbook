@@ -1,4 +1,4 @@
-// Close modal box when clicked
+// Close modal box when click &times
 document.querySelector('.close').addEventListener('click', function() {
         document.querySelector('.modal').style.display = 'none'
         document.querySelector('.modal-content').style.display = 'none'
