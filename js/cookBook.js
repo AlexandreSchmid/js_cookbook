@@ -95,8 +95,6 @@ function bottonMenu(res) {
             if (tag.includes('#all')) {
                 openModal(listRecipe(res), 'all', res)
                 recipeAll(res)
-            } else if (tag.includes('#byNutri')) {
-
             } else if (tag.includes('#byIngredient')) {
                 //openModal(listIngredient, 'checkbox')
             } else if (tag.includes('#byTag')) {

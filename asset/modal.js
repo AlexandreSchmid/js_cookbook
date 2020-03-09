@@ -18,21 +18,15 @@ function openModal(itemArray, typeData) {
 }
 
 function allRecipes(itemArray) {
-    let elements = ['table', 'tbody', 'button'],
-        eltTab = []
-    elements.forEach(el => {
-        eltTab.push(document.createElement(el))
-    })
+    let elements = ['table', 'tbody', 'button']
+    let eltTab = elements.map(el => document.createElement(el))
     eltTab[2].innerHTML = 'View recipe'
     eltTab[0].appendChild(eltTab[1])
     document.querySelector('.modal-content .content').append(eltTab[0])
     document.querySelector('.modal-content .content').append(eltTab[2])
     itemArray.forEach(el => {
-        let elements = ['input', 'label', 'tr', 'td', 'td'],
-            elt = []
-        elements.forEach(el => {
-            elt.push(document.createElement(el))
-        })
+        let elements = ['input', 'label', 'tr', 'td', 'td']
+        let elt = elements.map(el => document.createElement(el))
         elt[0].type = 'radio'
         elt[0].setAttribute('name', 'recipe')
         elt[0].setAttribute('id', el)
@@ -100,16 +94,18 @@ function recipeAll(res) {
     })
 }
 
-function recipeByTag() {
-    document.querySelector('.modal-content .content .tabRecipes .tabContent p a').addEventListener('click', function(e, res) {
-        let recipeList = document.getElementsByName('recipeList')
-        for (let i = 0; i < recipeList.length; i++) {
-            if (recipeList.item.id === res.recipe[i]) {
-                createView(res.recipe[i])
-            }
-        }
-        document.querySelector('.close').click()
-    })
+function recipeByTag(res) {
+    let items = document.querySelectorAll('.tabRecipes .tabContent p a')
+    for (let i = 0; i < items.length; i++) {
+        items[i].addEventListener('click', function() {
+            res.recipe.forEach(el => {
+                if (el.name === items[i].id) {
+                    createView(el)
+                }
+            })
+            document.querySelector('.close').click()
+        })
+    }
 }
 
 function displayRecipes(e, idButton) {
