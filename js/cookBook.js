@@ -1,16 +1,7 @@
-// Full list of recipes
-function listRecipe(res) {
-    let listRecipe = []
-    res.recipe.forEach(el => {
-        listRecipe.push(el.name)
-    })
-    return listRecipe
-}
 // Autocomplete input field
-function autocomplete(res) {
+function autocomplete(listRecipe) {
     document.querySelector('#sB').value = ''
-    let item = listRecipe(res)
-    item.forEach(el => {
+    listRecipe.forEach(el => {
         let opt = document.createElement('option')
         opt.value = el
         document.getElementById('recipeList').appendChild(opt)
@@ -87,37 +78,18 @@ function submitRecipe(res) {
     })
 }
 
-function bottonMenu(res) {
+function bottonMenu(listTag, listIngredients, listRecipe, res) {
     // Bottom menu, by clicking, open modalbox (in a separate file)
     for (let i = 0; i < document.getElementsByName('bottomMenu').length; i++) {
         document.getElementsByName('bottomMenu')[i].addEventListener('click', function(e) {
             let tag = e.target.href
             if (tag.includes('#all')) {
-                openModal(listRecipe(res), 'all', res)
+                openModal(listRecipe, 'all', res)
                 recipeAll(res)
             } else if (tag.includes('#byIngredient')) {
-                let listIngredients = {}
-                res.recipe.forEach(el => {
-                    if (el.ingredient) {
-                        el.ingredient.forEach(el2 => {
-                            listIngredients[el2.name] += el.name + ', '
-                        })
-                    }
-                    if (el.ingredientGroup) {
-                        el.ingredientGroup.forEach(el3 => {
-                            listIngredients[el3.name] += el.name + ', '
-                        })
-                    }
-                })
+                openModal(listIngredients, 'byIngredient', res)
+                recipeByTag(res)
             } else if (tag.includes('#byTag')) {
-                let listTag = {}
-                res.recipe.forEach(el => {
-                    el.tag.forEach(el2 => {
-                        if (el2) {
-                            listTag[el2.replace(' ', '_')] += ',' + el.name
-                        }
-                    })
-                })
                 openModal(listTag, 'byTag', res)
                 recipeByTag(res)
             }
@@ -128,7 +100,32 @@ function bottonMenu(res) {
 // Connect to the JSON file and parse it
 getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.json', function(response) {
     const res = JSON.parse(response)
-    autocomplete(res)
+    const listIngredients = {}
+    const listTag = {}
+    const listRecipe = []
+
+    res.recipe.forEach(el => {
+        listRecipe.push(el.name)
+        if (el.ingredient) {
+            el.ingredient.forEach(el2 => {
+                listIngredients[el2.name] += ',' + el.name
+            })
+        }
+        if (el.ingredientGroup) {
+            el.ingredientGroup.forEach(el3 => {
+                el3.ingredient.forEach(elt => {
+                    listIngredients[elt.name] += ',' + el.name
+                })
+            })
+        }
+        if (el.tag) {
+            el.tag.forEach(el4 => {
+                listTag[el4.replace(' ', '_')] += ',' + el.name
+            })
+        }
+    })
+    console.log(listIngredients)
+    autocomplete(listRecipe)
     submitRecipe(res)
-    bottonMenu(res)
+    bottonMenu(listTag, listIngredients, listRecipe, res)
 })

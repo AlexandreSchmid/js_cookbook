@@ -125,7 +125,8 @@ hr {
     /* Full width */
     height: 100%;
     /* Full height */
-    overflow: auto;
+    overflow: scroll;
+    overflow-y: scroll;
     /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* Fallback color */

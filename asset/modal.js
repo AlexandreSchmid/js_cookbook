@@ -11,8 +11,7 @@ function openModal(itemArray, typeData) {
         // Functions to display the data
     if (typeData === 'all') {
         allRecipes(itemArray)
-    }
-    if (typeData === 'byTag') {
+    } else if (typeData === 'byIngredient' || typeData === 'byTag') {
         byTag(itemArray)
     }
 }
@@ -119,7 +118,7 @@ function displayRecipes(e, idButton) {
     for (i = 0; i < tablinks; i++) {
         tablinks[i].className = tablinks[i].className.replace(' active', '')
     }
-
+    console.log(document.querySelector(`.tabRecipes #${idButton}`))
     document.querySelector(`.tabRecipes #${idButton}`).style.display = 'block'
     e.currentTarget.className += ' active'
 }
