@@ -12,10 +12,10 @@ function openModal(itemArray, typeData) {
     if (typeData === 'all') {
         allRecipes(itemArray)
     } else if (typeData === 'byIngredient' || typeData === 'byTag') {
-        byTag(itemArray)
+        filter(itemArray)
     }
 }
-
+// Display all the recipes available
 function allRecipes(itemArray) {
     let elements = ['table', 'tbody', 'button']
     let eltTab = elements.map(el => document.createElement(el))
@@ -38,7 +38,7 @@ function allRecipes(itemArray) {
     })
 }
 
-function byTag(itemArray) {
+function filter(itemArray) {
 
     let divButtons = document.createElement('div')
     divButtons.setAttribute('class', 'verticalTab')
@@ -52,16 +52,18 @@ function byTag(itemArray) {
     document.querySelector('.modal-content .content').append(divButtons)
     document.querySelector('.modal-content .content').append(divRecipes)
     for (let i in itemArray) {
+        // normalized for the tabs and the id of each recipe displayed
+        let normalized = i.replace(/\s/g, '_').replace(/[{(-/)}]/g, '').toLowerCase()
         let button = document.createElement('button')
         button.setAttribute('class', 'tabLink')
         button.setAttribute('id', i)
-        button.setAttribute('onclick', `displayRecipes(event, '${i}')`)
+        button.setAttribute('onclick', `displayRecipes(event, "${normalized}")`)
         button.innerHTML = i
         divButtons.append(button)
 
         let itemRecipe = document.createElement('div')
         itemRecipe.setAttribute('class', 'tabContent')
-        itemRecipe.id = i
+        itemRecipe.id = normalized
 
         let table = itemArray[i].split(',')
         table.forEach(el => {
@@ -118,7 +120,6 @@ function displayRecipes(e, idButton) {
     for (i = 0; i < tablinks; i++) {
         tablinks[i].className = tablinks[i].className.replace(' active', '')
     }
-    console.log(document.querySelector(`.tabRecipes #${idButton}`))
     document.querySelector(`.tabRecipes #${idButton}`).style.display = 'block'
     e.currentTarget.className += ' active'
 }

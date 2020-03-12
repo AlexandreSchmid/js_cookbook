@@ -124,7 +124,6 @@ getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.js
             })
         }
     })
-    console.log(listIngredients)
     autocomplete(listRecipe)
     submitRecipe(res)
     bottonMenu(listTag, listIngredients, listRecipe, res)
