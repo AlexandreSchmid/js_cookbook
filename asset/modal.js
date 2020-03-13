@@ -17,13 +17,14 @@ function openModal(itemArray, typeData) {
 }
 // Display all the recipes available
 function allRecipes(itemArray) {
+    // table and table elements for organize the modal box
     let elements = ['table', 'tbody', 'button']
     let eltTab = elements.map(el => document.createElement(el))
     eltTab[2].innerHTML = 'View recipe'
     eltTab[0].appendChild(eltTab[1])
     document.querySelector('.modal-content .content').append(eltTab[0])
     document.querySelector('.modal-content .content').append(eltTab[2])
-    itemArray.forEach(el => {
+    itemArray.forEach(el => { // Initialize the form for all recipes in a table
         let elements = ['input', 'label', 'tr', 'td', 'td']
         let elt = elements.map(el => document.createElement(el))
         elt[0].type = 'radio'
@@ -39,20 +40,21 @@ function allRecipes(itemArray) {
 }
 
 function filter(itemArray) {
-
+    // div that contains all buttons
     let divButtons = document.createElement('div')
     divButtons.setAttribute('class', 'verticalTab')
-
+        // div that contains recipes to display
     let divRecipes = document.createElement('div')
     divRecipes.setAttribute('class', 'tabRecipes')
+        // Title of modal box
     let p = document.createElement('p')
     p.setAttribute('class', 'title')
-    divRecipes.append(p.innerHTML = 'Search recipes by tag')
-
+    divRecipes.append(p.innerHTML = 'Filter recipes')
     document.querySelector('.modal-content .content').append(divButtons)
     document.querySelector('.modal-content .content').append(divRecipes)
     for (let i in itemArray) {
         // normalized for the tabs and the id of each recipe displayed
+        // Remove spaces and special characters for selector
         let normalized = i.replace(/\s/g, '_').replace(/[{(-/)}]/g, '').toLowerCase()
         let button = document.createElement('button')
         button.setAttribute('class', 'tabLink')
@@ -60,11 +62,11 @@ function filter(itemArray) {
         button.setAttribute('onclick', `displayRecipes(event, "${normalized}")`)
         button.innerHTML = i
         divButtons.append(button)
-
+            // one div per category of recipe (ingredient or tag)
         let itemRecipe = document.createElement('div')
         itemRecipe.setAttribute('class', 'tabContent')
         itemRecipe.id = normalized
-
+            // create one link per recipe
         let table = itemArray[i].split(',')
         table.forEach(el => {
             let p = document.createElement('p')
@@ -82,7 +84,7 @@ function filter(itemArray) {
     }
 }
 
-
+// Creates the view for one recipe
 function recipeAll(res) {
     document.querySelector('button').addEventListener('click', function() {
         let recipeCheck = document.getElementsByName('recipe')
@@ -95,6 +97,8 @@ function recipeAll(res) {
     })
 }
 
+// By clicking on a link into modalBox like search by tag or by ingredient
+// , create the view for one recipe
 function recipeByTag(res) {
     let items = document.querySelectorAll('.tabRecipes .tabContent p a')
     for (let i = 0; i < items.length; i++) {
@@ -108,7 +112,7 @@ function recipeByTag(res) {
         })
     }
 }
-
+// Tab system
 function displayRecipes(e, idButton) {
     let tabcontent, tablinks, i
     tabcontent = document.getElementsByClassName('tabContent')

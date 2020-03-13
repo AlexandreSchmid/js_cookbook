@@ -29,9 +29,10 @@ function createView(res) {
         })
     }
     if (res.ingredientGroup) {
+        // Double loop for getting all of the ingredients, for each part of the recipe
         res.ingredientGroup.forEach(el => {
             let li = document.createElement('li')
-            li.innerHTML = '<b>' + el.name + '</b>'
+            li.innerHTML = '<b>' + el.name + '</b>' // Bold for parts (like topping)
             document.querySelector('section .ingredients').appendChild(li)
             el.ingredient.forEach(el => {
                 let liSmall = document.createElement('li')
@@ -40,22 +41,22 @@ function createView(res) {
             })
         })
     }
-    // Instructions
+    // Instructions of recipe
     document.querySelector('section p').innerHTML = ''
     res.step.forEach(el => {
             let hr = document.createElement('hr')
             document.querySelector('section p').append(hr)
             document.querySelector('section p').append(el.description)
         })
-        // Tags
+        // Tags for each recipe
     if (res.tag) {
         document.querySelector('.note').innerHTML = ''
         res.tag.forEach(el => {
-            let a = document.createElement('p')
-            let aText = document.createTextNode(el + ' ')
-            a.href = el
+            let a = document.createElement('a')
+            let aText = document.createTextNode('#' + el + ' ')
+            a.href = '#' + el
             a.appendChild(aText)
-            document.querySelector('.note').append(a)
+            document.querySelector('.picture .note').append(a)
         })
     }
     document.getElementById('img').setAttribute('src', res.image) // Image of dish
@@ -84,7 +85,7 @@ function bottonMenu(listTag, listIngredients, listRecipe, res) {
         document.getElementsByName('bottomMenu')[i].addEventListener('click', function(e) {
             let tag = e.target.href
             if (tag.includes('#all')) {
-                openModal(listRecipe, 'all', res)
+                openModal(listRecipe, 'all', res) // call for the modal box
                 recipeAll(res)
             } else if (tag.includes('#byIngredient')) {
                 openModal(listIngredients, 'byIngredient', res)
@@ -99,6 +100,7 @@ function bottonMenu(listTag, listIngredients, listRecipe, res) {
 
 // Connect to the JSON file and parse it
 getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.json', function(response) {
+    // Initialize arrays for filters by tag and by ingredient
     const res = JSON.parse(response)
     const listIngredients = {}
     const listTag = {}
