@@ -8,14 +8,20 @@ body {
 /* Search field / button */
 
 .search {
-    margin: 0 auto;
-    margin-top: 2em;
-    width: 50%;
+    position: fixed;
+    width: auto;
+    background-color: rgb(121, 0, 0);
+    display: inline-flex;
+    left: 25%;
+    right: 0;
+    top: 0;
+    text-align: center;
 }
 
 .searchBar {
     text-align: center;
-    width: 100%;
+    margin-top: 3.5em;
+    width: 30em;
     height: 40px;
     border: 3px solid rgb(182, 0, 0);
     border-radius: 15px;
@@ -26,16 +32,24 @@ body {
 /** Picture div and image border**/
 
 .picture {
+    margin-left: 2em;
     text-align: center;
-    width: 30%;
+    width: 25%;
+    top: 20%;
     vertical-align: middle;
     position: fixed;
 }
 
 #img {
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
+    margin: 2em;
+    display: none;
+}
+
+.logo {
+    margin: 1em;
 }
 
 
@@ -48,14 +62,15 @@ body {
 }
 
 section {
+    color: antiquewhite;
     width: 65%;
     float: right;
     vertical-align: middle;
     text-align: left;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 14px;
-    margin-top: 3em;
-    margin-right: 2em;
+    margin-top: 12em;
+    margin-bottom: 3em;
 }
 
 h3 {
@@ -68,6 +83,12 @@ h3 {
 section .ingredients {
     list-style-type: circle;
     font-size: 14px;
+}
+
+#description {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color: blanchedalmond;
 }
 
 .note a {
@@ -100,7 +121,7 @@ section .ingredients {
 a {
     text-decoration: none;
     font-size: large;
-    color: cornflowerblue;
+    color: rgb(180, 180, 180);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -123,13 +144,9 @@ hr {
     /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
+    right: 0;
+    bottom: 0;
     /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: scroll;
-    overflow-y: scroll;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
@@ -140,41 +157,47 @@ hr {
 /* Modal Content/Box */
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 10px auto;
-    /* 15% from the top and centered */
+    background-color: #920000;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     padding: 20px;
     border: none;
     border-radius: 15px;
-    width: 65%;
+    width: 50%;
     /* Could be more or less, depending on screen size */
-    display: inline-block;
 }
 
-.modal-content .content {
+.content {
     display: inline-flex;
 }
 
-.modal-content .content button {
+.tabRecipes {
+    margin-left: 2em;
+}
+
+.verticalTab {
+    max-height: 450px;
+    overflow: auto scroll;
+}
+
+button {
     display: block;
     border: none;
-    background-color: lightskyblue;
+    background-color: rgb(212, 32, 32);
     color: white;
     width: 15em;
     height: 2em;
     transition: 0.3s;
 }
 
-.modal-content .content button:hover {
-    background-color: lightseagreen;
+button:hover {
+    background-color: rgb(97, 0, 0);
 }
 
 .tabContent {
     display: none;
-}
-
-.tabRecipes {
-    margin: 1em;
 }
 
 

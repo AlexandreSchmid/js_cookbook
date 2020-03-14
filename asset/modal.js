@@ -15,7 +15,7 @@ function openModal(itemArray, typeData) {
         filter(itemArray)
     }
 }
-// Display all the recipes available
+// Display all the recipes that are available
 function allRecipes(itemArray) {
     // table and table elements for organize the modal box
     let elements = ['table', 'tbody', 'button']
@@ -38,7 +38,7 @@ function allRecipes(itemArray) {
         elt[4].append(elt[0])
     })
 }
-
+// Create buttons on the left and show the recipes on the right
 function filter(itemArray) {
     // div that contains all buttons
     let divButtons = document.createElement('div')
@@ -59,7 +59,7 @@ function filter(itemArray) {
         let button = document.createElement('button')
         button.setAttribute('class', 'tabLink')
         button.setAttribute('id', i)
-        button.setAttribute('onclick', `displayRecipes(event, "${normalized}")`)
+        button.setAttribute('onclick', `displayRecipes(event, '${normalized}')`)
         button.innerHTML = i
         divButtons.append(button)
             // one div per category of recipe (ingredient or tag)
@@ -93,8 +93,13 @@ function recipeAll(res) {
                 createView(res.recipe[i])
             }
         }
+        // Close the modal box after
         document.querySelector('.close').click()
     })
+}
+
+function hoverRecipe(res, listRecipe) {
+
 }
 
 // By clicking on a link into modalBox like search by tag or by ingredient

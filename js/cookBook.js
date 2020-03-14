@@ -10,7 +10,7 @@ function autocomplete(listRecipe) {
 // Create the recipe page
 function createView(res) {
     document.querySelector('.recipeTitle').innerHTML = res.name
-    document.getElementById('small').innerHTML = res.description
+    document.getElementById('description').innerHTML = res.description
     document.querySelector('ul').innerHTML = ''
         // Each ingredient don't need a preparation or unit (sometimes)
     let unitAmount = function(it1, it2, it3) {
@@ -59,7 +59,9 @@ function createView(res) {
             document.querySelector('.picture .note').append(a)
         })
     }
+    document.getElementById('img').style.display = 'inline'
     document.getElementById('img').setAttribute('src', res.image) // Image of dish
+    document.getElementById('img').style.border = '2px solid white'
 }
 
 function submitRecipe(res) {
@@ -80,7 +82,7 @@ function submitRecipe(res) {
 }
 
 function bottonMenu(listTag, listIngredients, listRecipe, res) {
-    // Bottom menu, by clicking, open modalbox (in a separate file)
+    // Bottom menu, by clicking, open modalboxes (in a separate file)
     for (let i = 0; i < document.getElementsByName('bottomMenu').length; i++) {
         document.getElementsByName('bottomMenu')[i].addEventListener('click', function(e) {
             let tag = e.target.href
