@@ -90,10 +90,10 @@ function bottonMenu(listTag, listIngredients, listRecipe, res) {
                 openModal(listRecipe, 'all', res) // call for the modal box
                 recipeAll(res)
             } else if (tag.includes('#byIngredient')) {
-                openModal(listIngredients, 'byIngredient', res)
+                openModal(listIngredients, 'ingredient', res)
                 recipeByTag(res)
             } else if (tag.includes('#byTag')) {
-                openModal(listTag, 'byTag', res)
+                openModal(listTag, 'tag', res)
                 recipeByTag(res)
             }
         })

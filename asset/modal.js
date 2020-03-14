@@ -11,35 +11,31 @@ function openModal(itemArray, typeData) {
         // Functions to display the data
     if (typeData === 'all') {
         allRecipes(itemArray)
-    } else if (typeData === 'byIngredient' || typeData === 'byTag') {
-        filter(itemArray)
+    } else if (typeData === 'ingredient' || typeData === 'tag') {
+        filter(itemArray, typeData)
     }
 }
 // Display all the recipes that are available
 function allRecipes(itemArray) {
     // table and table elements for organize the modal box
-    let elements = ['table', 'tbody', 'button']
+    let elements = ['table', 'tbody']
     let eltTab = elements.map(el => document.createElement(el))
-    eltTab[2].innerHTML = 'View recipe'
     eltTab[0].appendChild(eltTab[1])
     document.querySelector('.modal-content .content').append(eltTab[0])
-    document.querySelector('.modal-content .content').append(eltTab[2])
     itemArray.forEach(el => { // Initialize the form for all recipes in a table
-        let elements = ['input', 'label', 'tr', 'td', 'td']
+        let elements = ['a', 'tr', 'td']
         let elt = elements.map(el => document.createElement(el))
-        elt[0].type = 'radio'
         elt[0].setAttribute('name', 'recipe')
         elt[0].setAttribute('id', el)
-        elt[1].setAttribute('for', 'recipe')
-        elt[1].innerHTML = el
-        eltTab[1].appendChild(elt[2]).appendChild(elt[3])
-        elt[2].appendChild(elt[4])
-        elt[3].append(elt[1])
-        elt[4].append(elt[0])
+        elt[0].href = '#'
+        elt[0].innerHTML = el
+        eltTab[1].append(elt[1])
+        elt[1].appendChild(elt[2])
+        elt[2].append(elt[0])
     })
 }
 // Create buttons on the left and show the recipes on the right
-function filter(itemArray) {
+function filter(itemArray, typeData) {
     // div that contains all buttons
     let divButtons = document.createElement('div')
     divButtons.setAttribute('class', 'verticalTab')
@@ -49,7 +45,7 @@ function filter(itemArray) {
         // Title of modal box
     let p = document.createElement('p')
     p.setAttribute('class', 'title')
-    divRecipes.append(p.innerHTML = 'Filter recipes')
+    divRecipes.append(p.innerHTML = `Filter recipes by ${typeData}`)
     document.querySelector('.modal-content .content').append(divButtons)
     document.querySelector('.modal-content .content').append(divRecipes)
     for (let i in itemArray) {
@@ -86,16 +82,17 @@ function filter(itemArray) {
 
 // Creates the view for one recipe
 function recipeAll(res) {
-    document.querySelector('button').addEventListener('click', function() {
-        let recipeCheck = document.getElementsByName('recipe')
-        for (let i = 0; i < res.recipe.length; i++) {
-            if (recipeCheck[i].checked) {
+    let links = document.getElementsByName('recipe')
+    for (let i = 0; i < res.recipe.length; i++) {
+        links[i].addEventListener('click', function(e) {
+            if (e.currentTarget.id === res.recipe[i].name) {
+                console.log(e.target.id)
                 createView(res.recipe[i])
             }
-        }
-        // Close the modal box after
-        document.querySelector('.close').click()
-    })
+            // Close the modal box after
+            document.querySelector('.close').click()
+        })
+    }
 }
 
 function hoverRecipe(res, listRecipe) {

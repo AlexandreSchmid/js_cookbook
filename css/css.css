@@ -62,7 +62,7 @@ body {
 }
 
 section {
-    color: antiquewhite;
+    color: white;
     width: 65%;
     float: right;
     vertical-align: middle;
@@ -88,7 +88,8 @@ section .ingredients {
 #description {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-style: italic;
-    color: blanchedalmond;
+    color: white;
+    font-size: smaller;
 }
 
 .note a {
@@ -121,7 +122,7 @@ section .ingredients {
 a {
     text-decoration: none;
     font-size: large;
-    color: rgb(180, 180, 180);
+    color: lightgrey;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
@@ -158,14 +159,10 @@ hr {
 
 .modal-content {
     background-color: #920000;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    margin: 100px;
     padding: 20px;
     border: none;
     border-radius: 15px;
-    width: 50%;
     /* Could be more or less, depending on screen size */
 }
 
@@ -180,6 +177,12 @@ hr {
 .verticalTab {
     max-height: 450px;
     overflow: auto scroll;
+}
+
+.tabRecipes .title {
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
 
 button {
