@@ -1,1 +1,0 @@
-A cookbook made with JSON and Ajax.
