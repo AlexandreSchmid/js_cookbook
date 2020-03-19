@@ -17,6 +17,8 @@
             <input type="submit" class="submitSearch" hidden="true">
         </form>
     </div>
+    <div class="slideShow">
+    </div>
     <div class="container">
         <div class="picture">
             <h3 class="recipeTitle"></h3>
@@ -34,17 +36,22 @@
 <footer>
     <nav class="navbar">
         <li class="allRecipes" name="bottomMenu">
-            <a href="#all">
-                <img src="./img/all.png" style="width:24px; height:24px;">
-            </a>
+            <div class="tooltip">
+                <a href="#all"><img src="./img/all.png" style="width:24px; height:24px;"></a>
+                <span class="tooltipText">All recipes</span>
+            </div>
         </li>
         <li class="byIngredient" name="bottomMenu">
-            <a href="#byIngredient">
-                <img src="./img/byIngredient.png" style="width:24px; height:24px;">
-            </a>
+            <div class="tooltip">
+                <a href="#byIngredient"><img src="./img/byIngredient.png" style="width:24px; height:24px;"></a>
+                <span class="tooltipText">Recipes by ingredient</span>
+            </div>
         </li>
         <li class="byTag" name="bottomMenu">
-            <a href="#byTag"><img src="./img/byTag.png" style="width:24px; height:24px;"></a>
+            <div class="tooltip">
+                <a href="#byTag"><img src="./img/byTag.png" style="width:24px; height:24px;"></a>
+                <span class="tooltipText">Recipes by tag</span>
+            </div>
         </li>
     </nav>
 </footer>
@@ -61,6 +68,7 @@
 
 <script src="./asset/app.js"></script>
 <script src="./asset/modal.js"></script>
+<script src="./asset/slideShow.js"></script>
 <script src="./js/cookBook.js"></script>
 
 </html>

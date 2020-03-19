@@ -109,25 +109,31 @@ getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.js
     const listRecipe = []
 
     res.recipe.forEach(el => {
-        listRecipe.push(el.name)
-        if (el.ingredient) {
-            el.ingredient.forEach(el2 => {
-                listIngredients[el2.name] += ',' + el.name
-            })
-        }
-        if (el.ingredientGroup) {
-            el.ingredientGroup.forEach(el3 => {
-                el3.ingredient.forEach(elt => {
-                    listIngredients[elt.name] += ',' + el.name
+            listRecipe.push(el.name)
+            if (el.ingredient) {
+                el.ingredient.forEach(el2 => {
+                    listIngredients[el2.name] += ',' + el.name
                 })
-            })
-        }
-        if (el.tag) {
-            el.tag.forEach(el4 => {
-                listTag[el4.replace(' ', '_')] += ',' + el.name
-            })
-        }
-    })
+            }
+            if (el.ingredientGroup) {
+                el.ingredientGroup.forEach(el3 => {
+                    el3.ingredient.forEach(elt => {
+                        listIngredients[elt.name] += ',' + el.name
+                    })
+                })
+            }
+            if (el.tag) {
+                el.tag.forEach(el4 => {
+                    listTag[el4.replace(' ', '_')] += ',' + el.name
+                })
+            }
+        })
+        // At loading of the main page, make sure no recipe is displayed
+    if (document.getElementById('img').getAttribute('src').length == 0) {
+        // Hide all the other elements for the slideshow, then starts the slideshow
+        document.querySelector('.container').style.display = 'none'
+        carousel(res)
+    }
     autocomplete(listRecipe)
     submitRecipe(res)
     bottonMenu(listTag, listIngredients, listRecipe, res)

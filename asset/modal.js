@@ -15,7 +15,7 @@ function openModal(itemArray, typeData) {
         filter(itemArray, typeData)
     }
 }
-// Display all the recipes that are available
+// Lists all the recipes that are available
 function allRecipes(itemArray) {
     // table and table elements for organize the modal box
     let elements = ['table', 'tbody']
@@ -86,7 +86,6 @@ function recipeAll(res) {
     for (let i = 0; i < res.recipe.length; i++) {
         links[i].addEventListener('click', function(e) {
             if (e.currentTarget.id === res.recipe[i].name) {
-                console.log(e.target.id)
                 createView(res.recipe[i])
             }
             // Close the modal box after
@@ -95,12 +94,8 @@ function recipeAll(res) {
     }
 }
 
-function hoverRecipe(res, listRecipe) {
-
-}
-
 // By clicking on a link into modalBox like search by tag or by ingredient
-// , create the view for one recipe
+// create the view for one recipe
 function recipeByTag(res) {
     let items = document.querySelectorAll('.tabRecipes .tabContent p a')
     for (let i = 0; i < items.length; i++) {
