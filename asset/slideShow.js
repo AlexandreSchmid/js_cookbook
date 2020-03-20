@@ -2,7 +2,7 @@ function carousel(res) {
     let carousel = document.querySelector('.slideShow')
     carousel.style.display = 'inline-flex'
         // Create elements for display images and recipe's names
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         let elts = ['div', 'img', 'a']
         let elt = elts.map(x => document.createElement(x))
         let sizeX = '350px',
@@ -26,8 +26,19 @@ function carousel(res) {
         img[i].addEventListener('click', function(e) {
             if (e.target.id === res.recipe[i].name) {
                 document.querySelector('body .slideShow').remove()
+                document.querySelector('.container').style.display = 'block'
                 createView(res.recipe[i])
             }
         })
     }
+    img.forEach(el => {
+        el.addEventListener('mouseover', function(e) {
+            let span = document.createElement('span')
+            span.innerHTML = el.id
+            el.parentNode.appendChild(span)
+        })
+        el.addEventListener('mouseout', function(e) {
+            document.querySelector('.slideShow .slide span').remove()
+        })
+    })
 }

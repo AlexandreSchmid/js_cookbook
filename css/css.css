@@ -286,12 +286,23 @@ button:hover {
     scrollbar-color: black #660007;
 }
 
+.slideShow .slide {
+    text-align: center;
+}
+
 .slideShow .slide img {
     margin: 0;
     transition: 0.5s;
 }
 
 .slideShow .slide img:hover {
+    box-shadow: black;
     transform: scale(1.07);
     filter: brightness(110%);
+}
+
+.slideShow .slide span {
+    z-index: 1;
+    position: static;
+    vertical-align: middle;
 }
