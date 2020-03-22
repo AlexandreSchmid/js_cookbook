@@ -94,8 +94,7 @@ function recipeAll(res) {
     }
 }
 
-// By clicking on a link into modalBox like search by tag or by ingredient
-// create the view for one recipe
+// Search by tag or by ingredient, creates the view for one recipe
 function recipeByTag(res) {
     let items = document.querySelectorAll('.tabRecipes .tabContent p a')
     for (let i = 0; i < items.length; i++) {
