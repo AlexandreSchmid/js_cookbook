@@ -9,6 +9,10 @@ function autocomplete(listRecipe) {
 }
 // Create the recipe page
 function createView(res) {
+    if (document.querySelector('body .slideShow')) {
+        document.querySelector('body .slideShow').remove()
+        document.querySelector('.container').style.display = 'block'
+    }
     document.querySelector('.recipeTitle').innerHTML = res.name
     document.getElementById('description').innerHTML = res.description
     document.querySelector('ul').innerHTML = ''

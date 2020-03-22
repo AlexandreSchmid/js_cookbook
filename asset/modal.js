@@ -36,7 +36,8 @@ function allRecipes(itemArray) {
 }
 // Create buttons on the left and show the recipes on the right
 function filter(itemArray, typeData) {
-    // div that contains all buttons
+    let content = document.querySelector('.modal-content .content')
+        // div that contains all buttons
     let divButtons = document.createElement('div')
     divButtons.setAttribute('class', 'verticalTab')
         // div that contains recipes to display
@@ -46,8 +47,8 @@ function filter(itemArray, typeData) {
     let p = document.createElement('p')
     p.setAttribute('class', 'title')
     divRecipes.append(p.innerHTML = `Filter recipes by ${typeData}`)
-    document.querySelector('.modal-content .content').append(divButtons)
-    document.querySelector('.modal-content .content').append(divRecipes)
+    content.append(divButtons)
+    content.append(divRecipes)
     for (let i in itemArray) {
         // normalized for the tabs and the id of each recipe displayed
         // Remove spaces and special characters for selector
@@ -82,9 +83,8 @@ function filter(itemArray, typeData) {
 
 // Creates the view for one recipe
 function recipeAll(res) {
-    let links = document.getElementsByName('recipe')
     for (let i = 0; i < res.recipe.length; i++) {
-        links[i].addEventListener('click', function(e) {
+        document.getElementsByName('recipe')[i].addEventListener('click', function(e) {
             if (e.currentTarget.id === res.recipe[i].name) {
                 createView(res.recipe[i])
             }
