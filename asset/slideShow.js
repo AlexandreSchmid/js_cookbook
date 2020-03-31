@@ -1,10 +1,10 @@
-function carousel(res) {
+function carousel(res, cook) {
     // Setting slideShow
     let carousel = document.querySelector('.slideShow')
     carousel.style.display = 'inline-flex'
         // Create elements for display images and recipe's names
     for (let i = 0; i < 4; i++) {
-        // Random recipe's picture 
+        // Random recipe's image link 
         let j = Math.round(res.recipe.length * Math.random())
         let elts = ['div', 'img', 'a']
         let elt = elts.map(x => document.createElement(x))
@@ -23,11 +23,11 @@ function carousel(res) {
         elt[0].appendChild(elt[2])
         carousel.appendChild(elt[0])
     }
-    // Click listener when click on a image
+    // Click listener when click on an image
     let img = document.getElementsByName('recipeImg')
     img.forEach(el => {
             el.addEventListener('click', function() {
-                createView(res.recipe[el.id])
+                cook.createView(res.recipe[el.id])
             })
         })
         // Mouseover / mouseout recipe's name 
