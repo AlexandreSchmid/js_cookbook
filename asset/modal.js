@@ -4,7 +4,7 @@ document.querySelector('.close').addEventListener('click', function() {
         document.querySelector('.modal-content').style.display = 'none'
     })
     // Open and setting the modal box at screen
-function openModal(itemArray, typeData) {
+function openModal(itemArray, typeData, cook) {
     document.querySelector('.modal').style.display = 'block'
     document.querySelector('.modal-content').style.display = 'block'
     document.querySelector('.modal-content .content').innerHTML = ''
@@ -12,7 +12,7 @@ function openModal(itemArray, typeData) {
     if (typeData === 'all') {
         allRecipes(itemArray)
     } else if (typeData === 'ingredient' || typeData === 'tag') {
-        filter(itemArray, typeData)
+        filter(itemArray, typeData, cook)
     }
 }
 // Lists all the recipes that are available
@@ -20,6 +20,7 @@ function allRecipes(itemArray) {
     // table and table elements for organize the modal box
     let elements = ['table', 'tbody']
     let eltTab = elements.map(el => document.createElement(el))
+    eltTab[0].setAttribute('class', 'recipeLinks')
     eltTab[0].appendChild(eltTab[1])
     document.querySelector('.modal-content .content').append(eltTab[0])
     itemArray.forEach(el => { // Initialize the form for all recipes in a table
@@ -34,6 +35,7 @@ function allRecipes(itemArray) {
         elt[2].append(elt[0])
     })
 }
+// Lists recipes by ingredient or by tag
 // Create buttons on the left and show the recipes on the right
 function filter(itemArray, typeData) {
     let content = document.querySelector('.modal-content .content')
@@ -82,11 +84,11 @@ function filter(itemArray, typeData) {
 }
 
 // Creates the view for one recipe
-function recipeAll(res) {
+function recipeAll(res, cook) {
     for (let i = 0; i < res.recipe.length; i++) {
         document.getElementsByName('recipe')[i].addEventListener('click', function(e) {
             if (e.currentTarget.id === res.recipe[i].name) {
-                createView(res.recipe[i])
+                cook.createView(res.recipe[i])
             }
             // Close the modal box after
             document.querySelector('.close').click()
@@ -94,14 +96,14 @@ function recipeAll(res) {
     }
 }
 
-// Search by tag or by ingredient, creates the view for one recipe
-function recipeByTag(res) {
+// Search by tag or by ingredient, detect the click and creates the view for one recipe
+function recipeByTag(res, cook) {
     let items = document.querySelectorAll('.tabRecipes .tabContent p a')
     for (let i = 0; i < items.length; i++) {
         items[i].addEventListener('click', function() {
             res.recipe.forEach(el => {
                 if (el.name === items[i].id) {
-                    createView(el)
+                    cook.createView(el)
                 }
             })
             document.querySelector('.close').click()
