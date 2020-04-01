@@ -11,13 +11,8 @@ function openModal(itemArray, typeData, cook) {
         // Functions to display the data
     if (typeData === 'all') {
         allRecipes(itemArray)
-<<<<<<< HEAD
     } else if (typeData === 'byIngredient' || typeData === 'byTag') {
         filter(itemArray, typeData)
-=======
-    } else if (typeData === 'ingredient' || typeData === 'tag') {
-        filter(itemArray, typeData, cook)
->>>>>>> master
     }
 }
 // Lists all the recipes that are available
@@ -89,35 +84,21 @@ function recipeAll(res, cook) {
     for (let i = 0; i < res.recipe.length; i++) {
         document.getElementsByName('recipe')[i].addEventListener('click', function(e) {
             if (e.currentTarget.id === res.recipe[i].name) {
-<<<<<<< HEAD
                 cookbook.createView(res.recipe[i])
-=======
-                cook.createView(res.recipe[i])
->>>>>>> master
             }
             // Close the modal box after
             document.querySelector('.close').click()
         })
     }
 }
-<<<<<<< HEAD
 // Search by tag or by ingredient, detect the click and creates the view for one recipe
 function recipeByTag(res) {
-=======
-
-// Search by tag or by ingredient, detect the click and creates the view for one recipe
-function recipeByTag(res, cook) {
->>>>>>> master
     let items = document.querySelectorAll('.tabRecipes .tabContent p a')
     for (let i = 0; i < items.length; i++) {
         items[i].addEventListener('click', function() {
             res.recipe.forEach(el => {
                 if (el.name === items[i].id) {
-<<<<<<< HEAD
                     cookbook.createView(el)
-=======
-                    cook.createView(el)
->>>>>>> master
                 }
             })
             document.querySelector('.close').click()
