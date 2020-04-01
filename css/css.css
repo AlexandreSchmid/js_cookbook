@@ -312,7 +312,10 @@ button:hover {
 }
 
 .slideShow .slide img {
-    margin: 0;
+    width: 350px;
+    height: 350px;
+    border-radius: 30px;
+    margin: 20px;
     transition: 0.5s;
 }
 
