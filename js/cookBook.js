@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var cookbook = {
     carousel(res) {
         // At loading of the main page, make sure no recipe is displayed
@@ -47,23 +46,10 @@ var cookbook = {
     autocomplete(listRecipe) {
         document.querySelector('#sB').value = ''
         listRecipe.forEach(el => {
-=======
-class Cookbook {
-    constructor(listRecipe, res) {
-        this.listRecipe = listRecipe
-        this.res = res
-    }
-
-    // Autocomplete input field
-    autocomplete() {
-        document.querySelector('#sB').value = ''
-        this.listRecipe.forEach(el => {
->>>>>>> master
             let opt = document.createElement('option')
             opt.value = el
             document.getElementById('recipeList').appendChild(opt)
         })
-<<<<<<< HEAD
     },
     // Create the recipe page
     createView(res) {
@@ -71,12 +57,6 @@ class Cookbook {
         let lastContent = ['ul', 'section p', '.note']
         lastContent.map(x => document.querySelector(x).innerHTML = '')
 
-=======
-    }
-
-    // Create the recipe page
-    createView(res) {
->>>>>>> master
         // Removes the slideshow and set the container for recipes
         if (document.querySelector('body .slideShow')) {
             document.querySelector('body .slideShow').remove()
@@ -84,10 +64,6 @@ class Cookbook {
         }
         document.querySelector('.recipeTitle').innerHTML = res.name // name of the recipe
         document.getElementById('description').innerHTML = res.description // desciption of the recipe
-<<<<<<< HEAD
-=======
-        document.querySelector('ul').innerHTML = ''
->>>>>>> master
 
         //*     INGREDIENTS TABLE       */
         // Each ingredient don't need a preparation or unit (sometimes)
@@ -125,7 +101,6 @@ class Cookbook {
                 el.ingredient.forEach(el => {
                     fillTable(el)
                 })
-<<<<<<< HEAD
             })
         }
         // Instructions of the recipes
@@ -160,66 +135,6 @@ class Cookbook {
                     }
                     i++
                 })
-=======
-            })
-        }
-        // Instructions of recipe
-        document.querySelector('section p').innerHTML = ''
-        console.log(res.step)
-        res.step.forEach(el => {
-                let hr = document.createElement('hr')
-                document.querySelector('section p').append(hr)
-                document.querySelector('section p').append(el.description)
-            })
-            // Tags for each recipe
-        if (res.tag) {
-            document.querySelector('.note').innerHTML = ''
-            res.tag.forEach(el => {
-                let a = document.createElement('a')
-                let aText = document.createTextNode('#' + el + ' ')
-                a.href = '#' + el
-                a.appendChild(aText)
-                document.querySelector('.picture .note').append(a)
-            })
-        }
-        document.getElementById('img').style.display = 'inline'
-        document.getElementById('img').setAttribute('src', res.image) // Image of dish
-        document.getElementById('img').style.border = '2px solid white'
-    }
-}
-
-function submitRecipe(res, cook) {
-    // By submitting a search, creating the view for one recipe
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault()
-        if (document.querySelector('#sB').value) {
-            let i = 0
-            res.recipe.forEach(el => {
-                if (el.name === document.querySelector('#sB').value) {
-                    cook.createView(res.recipe[i])
-                }
-                i++
-            })
-        }
-        document.querySelector('#sB').value = ''
-    })
-}
-
-function bottonMenu(listTag, listIngredients, listRecipe, cook, res) {
-    // Bottom menu, by clicking, open modalboxes (in a separate file)
-    for (let i = 0; i < document.getElementsByName('bottomMenu').length; i++) {
-        document.getElementsByName('bottomMenu')[i].addEventListener('click', function(e) {
-            let tag = e.target.href
-            if (tag.includes('#all')) {
-                openModal(listRecipe, 'all', res) // call for the modal box
-                recipeAll(res, cook) // Display into the modal box
-            } else if (tag.includes('#byIngredient')) {
-                openModal(listIngredients, 'ingredient', res)
-                recipeByTag(res, cook)
-            } else if (tag.includes('#byTag')) {
-                openModal(listTag, 'tag', res)
-                recipeByTag(res, cook)
->>>>>>> master
             }
             document.querySelector('#sB').value = ''
         })
@@ -270,24 +185,8 @@ getRecipe('https://raw.githubusercontent.com/LeaVerou/forkgasm/master/recipes.js
             })
         }
     })
-<<<<<<< HEAD
-
     cookbook.carousel(res)
     cookbook.autocomplete(listRecipe)
     cookbook.submitRecipe(res)
     cookbook.bottonMenu(listTag, listIngredients, listRecipe, res)
-=======
-    var cook = new Cookbook(listRecipe, res)
-        // At loading of the main page, make sure no recipe is displayed
-    if (document.getElementById('img').getAttribute('src').length == 0) {
-        // Hide all the other elements for the slideshow, then starts the slideshow
-        document.querySelector('.container').style.display = 'none'
-        carousel(res, cook)
-    }
-
-    bottonMenu(listTag, listIngredients, listRecipe, cook, res)
-
-    cook.autocomplete()
-    submitRecipe(res, cook)
->>>>>>> master
 })
