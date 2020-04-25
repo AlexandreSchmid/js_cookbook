@@ -10,7 +10,7 @@ var cookbook = {
                 // Create elements for display images and recipe's names
             for (let i = 0; i < 4; i++) {
                 // Random recipe's image link 
-                let j = Math.round(res.recipe.length * Math.random())
+                let j = Math.round(res.recipe.length * (Math.random() ?? 1))
                 let elts = ['div', 'img', 'a']
                 let elt = elts.map(x => document.createElement(x))
                 elt[0].setAttribute('class', 'slide')
@@ -139,6 +139,7 @@ var cookbook = {
             document.querySelector('#sB').value = ''
         })
     },
+    // Trigger the modal boxes functions by clicking on items into the botton navbar
     bottonMenu(listTag, listIngredients, listRecipe, res) {
         // Bottom menu, by clicking, open modalboxes (in a separate file)
         for (let i = 0; i < document.getElementsByName('bottomMenu').length; i++) {

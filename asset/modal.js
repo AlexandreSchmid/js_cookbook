@@ -41,12 +41,13 @@ function filter(itemArray, typeData) {
     let content = document.querySelector('.modal-content .content')
         // div that contain all buttons
     let divAllButtons = ['div', 'div', 'p']
-    let divAllButtonsAttributes = ['verticalTab', 'tabRecipes', 'title']
+    let divAllButtonsAttributes = ['verticalTab', 'tabRecipes', 'titleModalBox']
     let elts = divAllButtons.map(x => document.createElement(x))
     for (i in divAllButtonsAttributes) {
         elts[i].setAttribute('class', divAllButtonsAttributes[i])
     }
-    elts[1].append(elts[2].innerHTML = `Filter recipes by ${typeData}`)
+    elts[2].innerHTML = `Filter recipes ${typeData}`
+    elts[1].appendChild(elts[2])
     content.append(elts[0])
     content.append(elts[1])
     for (let i in itemArray) {
@@ -80,7 +81,7 @@ function filter(itemArray, typeData) {
     }
 }
 // Creates the view for one recipe
-function recipeAll(res, cook) {
+function recipeAll(res) {
     for (let i = 0; i < res.recipe.length; i++) {
         document.getElementsByName('recipe')[i].addEventListener('click', function(e) {
             if (e.currentTarget.id === res.recipe[i].name) {

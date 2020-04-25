@@ -196,6 +196,11 @@ hr {
     scrollbar-color: black #660007;
 }
 
+.titleModalBox{
+    color: white;
+    font-family: var(--font);
+}
+
 
 /* Tooltip container */
 
